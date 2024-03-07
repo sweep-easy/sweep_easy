@@ -1,60 +1,66 @@
-# This workflow uses actions that are not certified by GitHub.  They are
-# provided by a third-party and are governed by separate terms of service,
-# privacy policy, and support documentation.
-#
-# This workflow will install a prebuilt Ruby version, install dependencies, and
-# run tests and linters.
-name: "Ruby on Rails CI"
+name: rails
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - master
+      -
 jobs:
   test:
     runs-on: ubuntu-latest
+
     services:
       postgres:
-        image: postgres:11-alpine
-        ports:
-          - "5432:5432"
+        image: postgres:alpine
         env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
-
-    env:
-      PG_DATABASE: rails_test
-      PG_USER: rails
-      PG_PASSWORD: password
-      RAILS_ENV: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:alpine
+        ports: [ "6379:6379" ]
+        options: --entrypoint redis-server
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
+      - name: "Checkout repository"
+        uses: actions/checkout@v1
+
+      - name: "Install Ruby version specified in `.ruby-version`"
+        uses: eregon/use-ruby-action@master
+
+      - name: "Setup caching for Ruby gems cache"
+        uses: actions/cache@v1
         with:
-          bundler-cache: true
-          ruby-version: 3.3
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
 
-      - name: Setup test database
-        env:
-          PG_DATABASE: postgres
-          PG_HOST: localhost
-          PG_USER: postgres
-          PG_PASSWORD: password
-          RAILS_ENV: test
+      - name: "Bundle install"
         run: |
-          bin/rails db:setup
+          gem install bundler && bundle update --bundler && bundle -v
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
 
-      - name: Run tests
+      - name: "Bundle outdated"
+        continue-on-error: true
+        run: bundle outdated
+
+      - name: "Rails test"
         env:
-          PG_DATABASE: postgres
-          PG_HOST: localhost
-          PG_USER: postgres
-          PG_PASSWORD: password
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/test
+          REDIS_URL: redis://localhost:6379/0
           RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
-          bin/rake
+          bundle exec rails db:setup --trace
+          bundle exec rails test
+          bundle exec rails zeitwerk:check
