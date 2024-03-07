@@ -14,15 +14,18 @@ gem "redis", ">= 4.0.1"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "turbo-rails"
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri windows ]
+  gem "debug", platforms: %i[mri windows]
   gem "pry-byebug"
   gem "pry-rails"
 end
 
 group :development do
+  gem "brakeman"
+  gem "bundler-audit"
+  gem "standard"
   gem "web-console"
 end
 

@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+echo "Running 'bin/standardrb --fix'"
+bin/standardrb --fix
+
+echo "Done!"
