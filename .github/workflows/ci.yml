@@ -22,16 +22,39 @@ jobs:
           POSTGRES_DB: rails_test
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
+
     env:
+      PG_DATABASE: rails_test
+      PG_USER: rails
+      PG_PASSWORD: password
       RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
+          bundler-cache: true
           ruby-version: 3.3
-      - name: Set up database schema
-        run: bin/rails db:schema:load
+
+      - name: Setup test database
+        env:
+          PG_DATABASE: postgres
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: password
+          RAILS_ENV: test
+        run: |
+          bin/rails db:setup
+
       - name: Run tests
-        run: bin/rake
+        env:
+          PG_DATABASE: postgres
+          PG_HOST: localhost
+          PG_USER: postgres
+          PG_PASSWORD: password
+          RAILS_ENV: test
+        run: |
+          bin/rake
