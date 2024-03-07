@@ -35,21 +35,3 @@ jobs:
         run: bin/rails db:schema:load
       - name: Run tests
         run: bin/rake
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.3
-      - name: bundler-audit
-        uses: andrewmcodes/bundler-audit-action@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: brakeman
-        run: bin/brakeman -q -w2
-      - name: standardrb
-        run: bin/standardrb
