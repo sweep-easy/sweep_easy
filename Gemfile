@@ -3,9 +3,12 @@ source "https://rubygems.org"
 ruby "3.3.0"
 
 gem "bootsnap", require: false
+gem "devise", "~> 4.9"
 gem "image_processing", "~> 1.2"
 gem "importmap-rails"
+gem "invisible_captcha", "~> 2.2"
 gem "jbuilder"
+gem "name_of_person", "~> 1.1"
 gem "pg", "~> 1.1"
 gem "propshaft"
 gem "puma", ">= 5.0"
@@ -33,3 +36,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "erb_lint", "~> 0.5.0"
+
+gem "htmlbeautifier", "~> 1.4"
+
+gem "inline_svg", "~> 1.9"
