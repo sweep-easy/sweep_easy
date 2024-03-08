@@ -1,0 +1,9 @@
+---
+application_name: Sweep Easy
+business_name: Sweep Easy, Inc.
+business_address: |-
+  627 W Northgate
+  Saratoga Springs, UT 84045
+domain: sweepeasy.app
+support_email: support@sweepeasy.app
+default_from_email: Sweep Easy <no-reply@example.com>

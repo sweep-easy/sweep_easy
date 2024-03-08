@@ -1,6 +1,12 @@
-#!/bin/bash -e
+#!/usr/bin/env ruby
 
-echo "Running 'bin/standardrb --fix'"
-bin/standardrb --fix
+# Bin Utils
+$LOAD_PATH.unshift(File.expand_path("../../lib", __FILE__))
+require "bin_utils"
+include BinUtils
 
-echo "Done!"
+run "rails zeitwerk:check"
+run "bundle exec annotate"
+run "bundle exec standardrb --fix"
+run "bundle exec erblint -la -a"
+run "bun format:js"

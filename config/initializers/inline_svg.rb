@@ -1,7 +1,7 @@
 InlineSvg.configure do |config|
   config.asset_file = InlineSvg::CachedAssetFile.new(
     paths: [
-      "#{Rails.root}/app/assets/images"
+      Rails.root.join("app/assets/images").to_s
     ],
     filters: /\.svg/
   )

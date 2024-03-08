@@ -1,5 +1,4 @@
-import Cookies from 'js-cookie'
-import jstz from 'jstz'
+import jstz from "jstz"
 
 // Rails doesn't support every timezone that Intl supports
 export function findTimeZone() {
@@ -14,7 +13,3 @@ export function findTimeZone() {
     return jstz.determine().name()
   }
 }
-
-document.addEventListener("turbo:load", () => {
-  Cookies.set("browser_time_zone", findTimeZone(), { expires: 365, path: "/", secure: true, sameSite: 'strict' })
-})

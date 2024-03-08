@@ -1,0 +1,13 @@
+fix: true
+parallel: true
+
+ignore:
+  - "vendor/**/*"
+  - "lib/bin_utils.rb"
+  - "db/*"
+  - "app/**/*":
+      - Lint/AssignmentInCondition
+
+plugins:
+  - standard-rails
+  - standard-performance

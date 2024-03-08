@@ -1,56 +1,64 @@
 <%
-  label_classes = "block mb-2 font-extrabold"
-  input_classes = "inline-block w-full p-4 leading-6 text-lg font-extrabold placeholder-indigo-900 bg-white shadow border-2 border-indigo-900 rounded"
+  label_classes = "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+  input_classes = "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 %>
-<section class="py-26 bg-white">
-  <div class="container px-4 mx-auto">
-    <div class="max-w-lg mx-auto">
-      <div class="text-center mb-8">
-        <%= link_to root_path, class: "inline-block mx-auto mb-6" do %>
-          <%= inline_svg_tag "logo.svg", alt: "SweepEasy", class: "logo" %>
-        <% end %>
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-2">Create an account</h2>
-        <p class="text-lg font-extrabold leading-7 text-indigo-500">Start using SweepEasy today!</p>
-      </div>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="mb-6">
-          <%= f.label :name, class: label_classes %>
-          <%= f.text_field :name, autofocus: true, required: true, autocomplete: "name", class: input_classes %>
-        </div>
-        <div class="mb-6">
+<div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-20 lg:py-16 lg:grid-cols-12">
+  <div class="w-full p-6 mx-auto bg-white rounded-lg shadow dark:bg-gray-800 sm:max-w-xl lg:col-span-6 sm:p-8">
+    <%= link_to root_path, class: "inline-flex items-center mb-4 text-xl font-semibold text-gray-900 dark:text-white" do %>
+      <%= inline_svg_tag "mark.svg", alt: "SweepEasy", class: "2-8 h-8 mr-2" %>
+      SweepEasy
+    <% end %>
+    <h1 class="mb-2 text-2xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white">
+      Create your Account
+    </h1>
+    <p class="text-sm font-light text-gray-500 dark:text-gray-300">
+      Get started in seconds. Already have an account?
+      <%= link_to "Login here", new_user_session_path, class: "font-medium text-primary-600 hover:underline dark:text-primary-500" %>
+    </p>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mt-4 space-y-6 sm:mt-6" }) do |f| %>
+      <div class="grid gap-6 gap-y-3 sm:grid-cols-2">
+        <div class="col-span-2">
           <%= f.label :email, class: label_classes %>
-          <%= f.email_field :email, required: true, autocomplete: "email", class: input_classes %>
+          <%= f.email_field :email, required: true, placeholder: "name@company.com", autocomplete: "email", class: input_classes %>
         </div>
-        <div class="flex flex-row space-x-6">
-          <div class="flex-1 mb-6">
-            <%= f.label :phone, class: label_classes %>
-            <%= f.phone_field :phone, autocomplete: "phone", class: input_classes %>
-          </div>
-          <div class="flex-1 mb-6">
-            <%= f.label :company_name, class: label_classes %>
-            <%= f.text_field :company_name, autocomplete: "company", class: input_classes %>
-          </div>
+        <div>
+          <%= f.label :name, "Full Name", class: label_classes %>
+          <%= f.text_field :name, autofocus: true, required: true, placeholder: "e.g. Herbert Alfred", class: input_classes %>
         </div>
-        <div class="mb-6">
+        <div>
+          <%= f.label :company_name, class: label_classes %>
+          <%= f.text_field :company_name, autocomplete: "company", class: input_classes %>
+        </div>
+        <div>
+          <%= f.label :phone, class: label_classes %>
+          <%= f.phone_field :phone, autocomplete: "phone", class: input_classes %>
+        </div>
+        <div>
           <%= f.label :password, class: label_classes %>
-          <%= f.password_field :password, required: true, autocomplete: "new-password", class: input_classes %>
+          <%= f.password_field :password, required: true, autocomplete: "new-password", placeholder: "••••••••", class: input_classes %>
         </div>
-        <div class="mb-6">
-          <%= f.label :terms_of_service do %>
-            <%= f.check_box :terms_of_service, required: true %>
-            <span class="ml-1 font-extrabold">
-              I agree to the <%= link_to "terms of service", terms_path, class: "text-indigo-500 hover:underline" %>
-              and <%= link_to "privacy policy", privacy_path, class: "text-indigo-500 hover:underline" %>.
-            </span>
-          <% end %>
+      </div>
+      <div class="space-y-3">
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <%= f.check_box :terms_of_service, class: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800", required: true %>
+          </div>
+          <div class="ml-3 text-sm">
+            <label for="user_terms_of_service" class="font-light text-gray-500 dark:text-gray-300">
+              By signing up, you are creating a SweepEasy account, and you agree to SweepEasy's
+              <%= link_to "Terms of Use", terms_path, class: "font-medium text-primary-600 dark:text-primary-500 hover:underline" %>
+              and
+              <%= link_to "Privacy Policy", privacy_path, class: "font-medium text-primary-600 dark:text-primary-500 hover:underline" %>.
+            </label>
+          </div>
         </div>
-        <%= f.submit "Sign Up", class: "inline-block w-full py-4 px-6 mb-6 text-center text-lg leading-6 text-white font-extrabold bg-indigo-800 hover:bg-indigo-900 border-3 border-indigo-900 shadow rounded transition duration-200" %>
-        <p class="text-center font-extrabold">
-          Already have an account?
-          <%= link_to "Log in", new_user_session_path, class: "text-indigo-500 hover:underline" %>
-        </p>
-      <% end %>
-    </div>
+      </div>
+      <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
+        an account
+      </button>
+    <% end %>
   </div>
-</section>
+  <div class="mr-auto place-self-center lg:col-span-6">
+    <img class="hidden mx-auto lg:flex" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg" alt="illustration">
+  </div>
+</div>

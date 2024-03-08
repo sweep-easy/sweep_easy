@@ -311,3 +311,14 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 end
+
+Rails.application.config.to_prepare do
+  # Optional: Ensure that Routes and therefore Controller mixins like authenticate_user! are defined before autoloading Controllers
+  Rails.application.reload_routes!
+
+  Devise::SessionsController.layout "application_unauthenticated"
+  Devise::RegistrationsController.layout proc{ |controller| user_signed_in? ? "application" : "application_unauthenticated" }
+  Devise::ConfirmationsController.layout "application_unauthenticated"
+  Devise::UnlocksController.layout "application_unauthenticated"
+  Devise::PasswordsController.layout proc{ |controller| user_signed_in? ? "application" : "application_unauthenticated" }
+end

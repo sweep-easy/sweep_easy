@@ -9,14 +9,8 @@
   <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   <%= hotwire_livereload_tags if Rails.env.development? %>
 </head>
-
-<body>
-  <main class="antialiased bg-body text-body font-body">
-    <%= render "layouts/shared/navbar" %>
-    <%= render "layouts/shared/notices" %>
-    <%= yield %>
-  </main>
-
-  <%= render "layouts/shared/footer" %>
+<body class="bg-gray-50 dark:bg-gray-900">
+  <%= render "layouts/shared/notices" %>
+  <%= yield %>
 </body>
 </html>

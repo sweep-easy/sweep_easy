@@ -1,0 +1,31 @@
+{
+  "name": "sweep-easy",
+  "private": true,
+  "scripts": {
+    "build": "bun bun.config.js",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "format:js": "prettier --write --log-level warn 'app/**/*.js'"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "latest",
+    "@hotwired/turbo-rails": "latest",
+    "@rails/request.js": "latest",
+    "@tailwindcss/aspect-ratio": "latest",
+    "@tailwindcss/container-queries": "latest",
+    "@tailwindcss/forms": "latest",
+    "@tailwindcss/typography": "latest",
+    "autoprefixer": "latest",
+    "cleave.js": "^1.6.0",
+    "flowbite": "^2.3.0",
+    "js-cookie": "^3.0.5",
+    "jstz": "^2.1.1",
+    "local-time": "^3.0.2",
+    "postcss": "latest",
+    "stimulus-scroll-to": "latest",
+    "tailwindcss": "latest",
+    "tailwindcss-animate": "latest"
+  },
+  "devDependencies": {
+    "prettier": "3.2.5"
+  }
+}

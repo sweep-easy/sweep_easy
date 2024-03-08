@@ -4,5 +4,6 @@ import "@hotwired/turbo-rails"
 import LocalTime from "local-time"
 LocalTime.start()
 
-
-import "controllers"
+import "flowbite"
+import "./src"
+import "./controllers"
