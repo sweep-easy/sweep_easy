@@ -7,10 +7,7 @@
 <header>
   <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-      <%= link_to root_path, class: "flex items-center" do %>
-        <%= inline_svg_tag "mark.svg", alt: "SweepEasy", class: "mr-3 h-6 sm:h-9" %>
-        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">SweepEasy</span>
-      <% end %>
+      <%= render Logo::Component.new  %>
       <div class="flex items-center lg:order-2">
         <% if current_user %>
           <button data-tooltip-target="tooltip-dark" type="button" class="inline-flex items-center p-2 mr-1 text-sm font-medium text-gray-500 rounded-lg dark:text-gray-400 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">

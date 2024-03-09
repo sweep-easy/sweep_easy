@@ -5,6 +5,7 @@ ruby "3.3.0"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "devise", "~> 4.9"
+gem "dry-initializer", "~> 3.1"
 gem "honeybadger", "~> 5.6"
 gem "image_processing", "~> 1.2"
 gem "inline_svg", "~> 1.9"
@@ -21,6 +22,8 @@ gem "stimulus-rails"
 gem "tailwindcss-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
+gem "view_component", "~> 3.11"
+gem "view_component-contrib", "~> 0.2.2"
 
 group :development, :test do
   gem "better_errors", "~> 2.10"
@@ -41,11 +44,11 @@ end
 
 group :development do
   gem "annotate"
-  gem "better_html"
   gem "brakeman"
   gem "bundler-audit"
   gem "hotwire-livereload"
   gem "letter_opener_web"
+  gem "lookbook", "~> 2.2"
   gem "syntax_tree"
   gem "syntax_tree-haml"
   gem "syntax_tree-rbs"

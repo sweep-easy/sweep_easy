@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= App.config.application_name %></title>
+  <title>SweepEasy Component Preview</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -9,14 +9,7 @@
   <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   <%= hotwire_livereload_tags if Rails.env.development? %>
 </head>
-
 <body>
-  <main class="antialiased bg-body text-body font-body">
-    <%= render "layouts/shared/navbar" %>
-    <%= render "layouts/shared/notices" %>
-    <%= yield %>
-  </main>
-
-  <%= render "layouts/shared/footer" %>
+  <%= yield %>
 </body>
 </html>
