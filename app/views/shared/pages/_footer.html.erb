@@ -1,0 +1,20 @@
+<%
+  footer_link_classes = "mr-4 hover:underline md:mr-6"
+%>
+<footer class="p-4 py-8 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+  <div class="mx-auto max-w-screen-xl text-center">
+    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
+    <div class="sm:items-center sm:justify-between sm:flex">
+      <span class="block text-sm text-gray-500 dark:text-gray-400">
+        &copy; <%= Time.now.year %>
+        <%= link_to App.config.business_name, root_url, class: "hover:underline" %>
+        All Rights Reserved.
+      </span>
+      <div class="flex justify-center mt-4 space-x-6 sm:mt-0">
+        <%= link_to "Terms", terms_path, class: "hover:underline text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400" %>
+        <%= link_to "Privacy", privacy_path, class: "hover:underline text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400" %>
+        <%= link_to "Contact", "#", class: "hover:underline text-sm text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400" %>
+      </div>
+    </div>
+  </div>
+</footer>

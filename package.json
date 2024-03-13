@@ -21,6 +21,7 @@
     "jstz": "^2.1.1",
     "local-time": "^3.0.2",
     "postcss": "latest",
+    "remixicon": "^4.2.0",
     "stimulus-scroll-to": "latest",
     "tailwindcss": "latest",
     "tailwindcss-animate": "latest"

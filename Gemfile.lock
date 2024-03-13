@@ -122,6 +122,8 @@ GEM
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
+    css_parser (1.16.0)
+      addressable
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
     date (3.3.4)
@@ -160,6 +162,8 @@ GEM
       actioncable (>= 6.0.0)
       listen (>= 3.0.0)
       railties (>= 6.0.0)
+    htmlbeautifier (1.4.3)
+    htmlentities (4.3.4)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -197,6 +201,18 @@ GEM
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
+    lookbook (2.2.2)
+      activemodel
+      css_parser
+      htmlbeautifier (~> 1.3)
+      htmlentities (~> 4.3.4)
+      marcel (~> 1.0)
+      railties (>= 5.0)
+      redcarpet (~> 3.5)
+      rouge (>= 3.26, < 5.0)
+      view_component (>= 2.0)
+      yard (~> 0.9)
+      zeitwerk (~> 2.5)
     lru_redux (1.1.0)
     mail (2.8.1)
       mini_mime (>= 0.1.1)
@@ -310,6 +326,7 @@ GEM
       abbrev
     rdoc (6.6.2)
       psych (>= 4.0.0)
+    redcarpet (3.6.0)
     redis (5.1.0)
       redis-client (>= 0.17.0)
     redis-client (0.21.0)
@@ -413,6 +430,10 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    view_component (3.11.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -460,6 +481,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   letter_opener_web
+  lookbook (~> 2.2)
   minitest-reporters
   name_of_person (~> 1.1)
   pg (~> 1.1)
@@ -483,6 +505,7 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
+  view_component (~> 3.11)
   web-console
 
 RUBY VERSION

@@ -3,6 +3,6 @@
     flash.each do |msg_type, message|
       partial = msg_type.to_s == "notice" ? "success" : "error"
   %>
-    <%= render partial: "layouts/shared/flash_#{partial}", locals: { message: message } %>
+    <%= render partial: "shared/flash_#{partial}", locals: { message: message } %>
   <% end %>
 </div>

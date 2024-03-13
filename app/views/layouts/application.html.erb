@@ -7,16 +7,15 @@
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  <script src="https://kit.fontawesome.com/4482ab49ba.js" crossorigin="anonymous"></script>
   <%= hotwire_livereload_tags if Rails.env.development? %>
 </head>
+<body class="antialiased bg-gray-50 dark:bg-gray-900">
+  <%= render "shared/navbar" %>
+  <%= render "shared/sidebar" %>
 
-<body>
-  <main class="antialiased bg-body text-body font-body">
-    <%= render "layouts/shared/navbar" %>
-    <%= render "layouts/shared/notices" %>
+  <main class="p-4 md:ml-64 h-auto pt-20">
     <%= yield %>
   </main>
-
-  <%= render "layouts/shared/footer" %>
 </body>
 </html>

@@ -16,6 +16,7 @@
       <%= link_to "Sign up", new_user_registration_path, class: "font-medium text-primary-600 hover:underline dark:text-primary-500" %>
     </p>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-4 space-y-6 sm:mt-6" }) do |f| %>
+      <%= render partial: "devise/shared/error_messages", locals: { resource: resource } %>
       <div class="grid gap-6 gap-y-3 sm:grid-cols-2">
         <div class="col-span-2">
           <%= f.label :email, class: label_classes %>
@@ -41,6 +42,9 @@
       <p class="text-sm font-light text-gray-500 dark:text-gray-400">
         Don't have an account?
         <%= link_to "Sign up", new_user_registration_path, class: "font-medium text-primary-600 hover:underline dark:text-primary-500" %>
+        <br/>
+        Need to confirm your email?
+        <%= link_to "Confirm", new_user_confirmation_path, class: "font-medium text-primary-600 hover:underline dark:text-primary-500" %>
       </p>
     <% end %>
   </div>
